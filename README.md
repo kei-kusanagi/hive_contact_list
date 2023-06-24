@@ -4,7 +4,7 @@
 </div>
 
 
-Usando Hive podemos guardatos de forma local y estos persisten aun si cerramos la aplicacion como si fuera una base de datos en nuestro dispositivo ya se android, Ios, linux, windows o webpage, creando un archivo de datos en cada dispositivo donde se corra la aplicacion.
+Usando Hive podemos guardar datos de forma local y estos persisten aun si cerramos la aplicación como si fuera una base de datos en nuestro dispositivo ya se android, Ios, linux, windows o webpage, creando un archivo de datos en cada dispositivo donde se corra la aplicación.
 
 <div align="center">
   <img src="https://github.com/kei-kusanagi/hive_contact_list/assets/93227096/e3226710-e179-4e96-8022-f6a0aa5ae282">
@@ -13,7 +13,7 @@ Usando Hive podemos guardatos de forma local y estos persisten aun si cerramos l
 
 
 
-packeteria usada https://pub.dev/packages/hive
+Paquetería usada https://pub.dev/packages/hive
 
-video tutorial en elq ue me base  https://youtu.be/yrY6rKJtXqU
+Video tutorial en el que me base  https://youtu.be/yrY6rKJtXqU
 
