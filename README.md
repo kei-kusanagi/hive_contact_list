@@ -8,6 +8,5 @@ Usando Hive podemos guardatos de forma local y estos persisten aun si cerramos l
 
 
 packeteria usada https://pub.dev/packages/hive
-video tutorial en elq ue me base 
+video tutorial en elq ue me base  https://youtu.be/yrY6rKJtXqU
 
-<iframe width="360" height="115" src="https://www.youtube.com/embed/yrY6rKJtXqU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
