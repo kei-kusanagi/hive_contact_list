@@ -1,16 +1,13 @@
 # hive_todolist_yt
+![image](https://github.com/kei-kusanagi/hive_contact_list/assets/93227096/0e64947a-8ae7-4d80-92a4-d8b4260281ac)
 
-A new Flutter project.
 
-## Getting Started
+Usando Hive podemos guardatos de forma local y estos persisten aun si cerramos la aplicacion como si fuera una base de datos en nuestro dispositivo ya se android, Ios, linux, windows o webpage, creando un archivo de datos en cada dispositivo donde se corra la aplicacion.
 
-This project is a starting point for a Flutter application.
+![image](https://github.com/kei-kusanagi/hive_contact_list/assets/93227096/e3226710-e179-4e96-8022-f6a0aa5ae282)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+packeteria usada https://pub.dev/packages/hive
+video tutorial en elq ue me base 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<iframe width="360" height="115" src="https://www.youtube.com/embed/yrY6rKJtXqU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
