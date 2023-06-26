@@ -12,3 +12,15 @@ class Contact extends HiveObject {
   @HiveField(1)
   final String number;
 }
+
+@HiveType(typeId: 1)
+class ShoppingList extends HiveObject {
+  @HiveField(0)
+  late String nombre;
+
+  @HiveField(1)
+  late String tienda;
+
+  @HiveField(2)
+  late List<Map<String, dynamic>> objetosAsociados;
+}

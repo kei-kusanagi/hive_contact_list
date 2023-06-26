@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hive_todolist_yt/contact.dart';
-import 'package:hive_todolist_yt/hive_data.dart';
+import 'package:hive_todolist_yt/screens/todo_page.dart';
+import 'package:hive_todolist_yt/screens/list_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -10,67 +10,45 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController controller = TextEditingController();
-  final TextEditingController numberController = TextEditingController();
-  final HiveData hiveData = const HiveData();
-  List<Contact> contacts = [];
+  int _selectedIndex = 0;
 
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    numberController.dispose();
-    super.dispose();
-  }
-
-  Future<void> getData() async {
-    contacts = await hiveData.contacts;
-    setState(() {});
-  }
+  final List<Widget> _pages = [
+    TodoListPage(),
+    MyListPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: controller,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('My App'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              },
             ),
-            TextFormField(
-              controller: numberController,
-            ),
-            ElevatedButton(
-                onPressed: () async {
-                  await hiveData
-                      .saveContact(
-                        Contact(
-                            name: controller.text,
-                            number: numberController.text),
-                      )
-                      .then((value) => print(value));
-                  await getData();
-                },
-                child: const Text('Add')),
-            Expanded(
-              child: ListView.builder(
-                itemCount: contacts.length ?? 0,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(contacts![index].name),
-                    subtitle: Text(contacts![index].number),
-                  );
-                },
-              ),
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {
+                setState(() {
+                  _selectedIndex = 1;
+                });
+              },
             ),
           ],
         ),
+        body: _pages[_selectedIndex],
       ),
     );
   }
