@@ -10,17 +10,22 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var myPrimaryColor = Colors.deepPurple;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: myPrimaryColor,
+        ),
         useMaterial3: true,
+      ).copyWith(
+        appBarTheme: AppBarTheme(
+          backgroundColor: myPrimaryColor,
+        ),
       ),
       home: const MyHomePage(),
     );
