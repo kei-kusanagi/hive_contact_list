@@ -12,6 +12,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
+  final List<String> _pageTitles = [
+    'Todo List',
+    'Buy List',
+  ];
+
   final List<Widget> _pages = [
     TodoListPage(),
     MyListPage(),
@@ -21,7 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My App'),
+        title:
+            Text(_pageTitles[_selectedIndex]), // Cambiar el título de la AppBar
         actions: [
           IconButton(
             icon: Icon(Icons.home),

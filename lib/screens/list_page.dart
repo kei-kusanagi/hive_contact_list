@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_todolist_yt/contact.dart';
 import 'package:hive_todolist_yt/hive_data.dart';
+import 'package:hive_todolist_yt/screens/detail_screen.dart';
 
 class MyListPage extends StatefulWidget {
   const MyListPage({Key? key}) : super(key: key);
@@ -10,14 +11,10 @@ class MyListPage extends StatefulWidget {
 }
 
 class _MyListPageState extends State<MyListPage> {
-  List<String> nombres = [];
-  List<String> tiendas = [];
-  List<Map<String, dynamic>> listaProductos = [];
-
+  List<ShoppingList> shoppList = [];
   final TextEditingController nombreController = TextEditingController();
   final TextEditingController tiendaController = TextEditingController();
   final HiveData hiveData = const HiveData();
-  List<ShoppingList> shoppList = [];
 
   @override
   void initState() {
@@ -51,25 +48,39 @@ class _MyListPageState extends State<MyListPage> {
               controller: tiendaController,
             ),
             ElevatedButton(
-                onPressed: () async {
-                  await hiveData
-                      .saveList(
-                        ShoppingList(
-                            nombre: nombreController.text,
-                            tienda: tiendaController.text,
-                            objetosAsociados: listaProductos),
-                      )
-                      .then((value) => print(value));
-                  await getData();
-                },
-                child: const Text('Add')),
+              onPressed: () async {
+                await hiveData
+                    .saveList(
+                      ShoppingList(
+                        nombre: nombreController.text,
+                        tienda: tiendaController.text,
+                        objetosAsociados: [], // Aquí puedes agregar los objetos asociados si los tienes
+                      ),
+                    )
+                    .then((value) => print(value));
+                await getData();
+              },
+              child: const Text('Add'),
+            ),
             Expanded(
               child: ListView.builder(
-                itemCount: shoppList.length ?? 0,
+                itemCount: shoppList.length,
                 itemBuilder: (context, index) {
+                  final shoppingList = shoppList[index];
                   return ListTile(
-                    title: Text(shoppList![index].nombre),
-                    subtitle: Text(shoppList![index].tienda),
+                    title: Text(shoppingList.nombre),
+                    subtitle: Text(shoppingList.tienda),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Detail_screen(
+                            nombre: shoppingList.nombre,
+                            objetos: shoppingList.objetosAsociados,
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
