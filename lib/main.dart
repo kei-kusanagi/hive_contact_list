@@ -6,6 +6,7 @@ import 'package:hive_todolist_yt/screens/home_page.dart';
 Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ContactAdapter());
+  Hive.registerAdapter(ShoppingListAdapter());
   runApp(const MyApp());
 }
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
           seedColor: myPrimaryColor,
         ),
         useMaterial3: true,

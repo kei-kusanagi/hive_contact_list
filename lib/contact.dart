@@ -15,6 +15,11 @@ class Contact extends HiveObject {
 
 @HiveType(typeId: 1)
 class ShoppingList extends HiveObject {
+  ShoppingList(
+      {required this.nombre,
+      required this.tienda,
+      required this.objetosAsociados});
+
   @HiveField(0)
   late String nombre;
 
