@@ -28,4 +28,9 @@ class ShoppingList extends HiveObject {
 
   @HiveField(2)
   late List<Map<String, dynamic>> objetosAsociados;
+
+  void agregarObjetosAsociados(List<Map<String, dynamic>> nuevosObjetos) {
+    objetosAsociados.addAll(nuevosObjetos);
+    save();
+  }
 }
