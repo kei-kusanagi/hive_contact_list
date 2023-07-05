@@ -3,10 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_todolist_yt/contact.dart';
 import 'package:hive_todolist_yt/screens/home_page.dart';
 
-Future<void> main() async {
-  await Hive.initFlutter();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapter(ContactAdapter());
   Hive.registerAdapter(ShoppingListAdapter());
+  await Hive.initFlutter();
+  Hive.openBox<Contact>('contact');
+  Hive.openBox<ShoppingList>('shoppingLists');
   runApp(const MyApp());
 }
 

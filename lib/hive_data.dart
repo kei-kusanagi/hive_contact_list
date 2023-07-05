@@ -1,5 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_todolist_yt/contact.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 
 class HiveData {
   const HiveData();
@@ -24,5 +26,14 @@ class HiveData {
     final Box<ShoppingList> box =
         await Hive.openBox<ShoppingList>('buyListBox');
     return box.values.toList();
+  }
+
+  Future<void> addObjectToShoppingList(
+      int shoppingListIndex, Map<String, dynamic> objeto) async {
+    final Box<ShoppingList> box =
+        await Hive.openBox<ShoppingList>('buyListBox');
+    final ShoppingList? shoppingList = box.get(shoppingListIndex);
+    shoppingList?.agregarObjeto(objeto);
+    await shoppingList!.save();
   }
 }

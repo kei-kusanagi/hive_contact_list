@@ -15,10 +15,11 @@ class Contact extends HiveObject {
 
 @HiveType(typeId: 1)
 class ShoppingList extends HiveObject {
-  ShoppingList(
-      {required this.nombre,
-      required this.tienda,
-      required this.objetosAsociados});
+  ShoppingList({
+    required this.nombre,
+    required this.tienda,
+    required this.objetosAsociados,
+  });
 
   @HiveField(0)
   late String nombre;
@@ -29,8 +30,8 @@ class ShoppingList extends HiveObject {
   @HiveField(2)
   late List<Map<String, dynamic>> objetosAsociados;
 
-  void agregarObjetosAsociados(List<Map<String, dynamic>> nuevosObjetos) {
-    objetosAsociados.addAll(nuevosObjetos);
+  void agregarObjeto(Map<String, dynamic> nuevoObjeto) {
+    objetosAsociados.add(nuevoObjeto);
     save();
   }
 }

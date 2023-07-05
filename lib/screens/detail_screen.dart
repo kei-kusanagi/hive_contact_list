@@ -24,14 +24,13 @@ class _Detail_screenState extends State<Detail_screen> {
   final TextEditingController unidadesController = TextEditingController();
   final HiveData hiveData = const HiveData();
 
-  List<Map<String, dynamic>> get objetos => widget.objetos;
+  // List<Map<String, dynamic>> get objetos => widget.objetos;
   List<ShoppingList> productos = [];
   late ShoppingList shoppingList;
 
   @override
   void initState() {
     super.initState();
-    Hive.openBox<ShoppingList>('shoppingLists');
     shoppingList = ShoppingList(
       nombre: widget.nombre,
       tienda: '',
@@ -117,8 +116,19 @@ class _Detail_screenState extends State<Detail_screen> {
                 final nombreProd = productoController.text;
                 final valorUnit = valorUnitarioController.text;
                 final unidades = unidadesController.text;
-
-                agregarObjeto(nombreProd, valorUnit, unidades);
+                final nuevoObjeto = {
+                  'producto': nombreProd,
+                  'valor': valorUnit,
+                  'unidades': unidades,
+                  'check': false,
+                };
+                // Hive.box<ShoppingList>('shoppingLists').put(
+                //     shoppingList.agregarObjeto, nuevoObjeto as ShoppingList);
+                //
+                // hiveData.addObjectToShoppingList(widget.objetos[index], nuevoObjeto);
+                productoController.clear();
+                valorUnitarioController.clear();
+                unidadesController.clear();
                 getData();
               },
               child: const Text('Agregar producto'),
@@ -126,7 +136,7 @@ class _Detail_screenState extends State<Detail_screen> {
             const SizedBox(height: 16.0),
             Expanded(
               child: ListView.builder(
-                itemCount: objetos.length,
+                itemCount: shoppingList.objetosAsociados.length,
                 itemBuilder: (context, index) {
                   final objeto = widget.objetos[index];
 
@@ -167,7 +177,7 @@ class _Detail_screenState extends State<Detail_screen> {
                     },
                     onDismissed: (direction) {
                       setState(() {
-                        objetos.removeAt(index);
+                        // objetos.removeAt(index);
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Producto eliminado')),
@@ -207,27 +217,6 @@ class _Detail_screenState extends State<Detail_screen> {
         ),
       ),
     );
-  }
-
-  agregarObjeto(
-    String nombreProd,
-    String valorUnit,
-    String unidades,
-  ) {
-    final nuevoObjeto = {
-      'producto': nombreProd,
-      'valor': valorUnit,
-      'unidades': unidades,
-      'check': false,
-    };
-
-    shoppingList.objetosAsociados.add(nuevoObjeto);
-    Hive.box<ShoppingList>('shoppingLists')
-        .put(2, shoppingList); // Utiliza la instancia de shoppingList
-
-    productoController.clear();
-    valorUnitarioController.clear();
-    unidadesController.clear();
   }
 
   aumentarCantidad(int index) {}
